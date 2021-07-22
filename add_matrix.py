@@ -37,4 +37,11 @@ h_d = numpy.empty_like(h_a)
 
 add_matrix_gpu(cuda.In(h_a), cuda.In(h_b), cuda.Out(h_d), numpy.int32(MAT_SIZE_X), numpy.int32(MAT_SIZE_Y), block = block, grid = grid)
 
+for y in range(MAT_SIZE_Y):
+    for x in range(MAT_SIZE_X):
+        i = y * MAT_SIZE_X + x
+        if i < 10:
+            print("A[%d]=%8.2f, B[%d]=%8.2f, D[%d]=%8.2f" % (i, h_a[x][y], i, h_b[x][y], i, h_d[x][y]))
+        else:
+            break
 
